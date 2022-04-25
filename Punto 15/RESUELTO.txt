@@ -1,0 +1,123 @@
+Reto A:
+Problema:
+Rompe el principio S.
+Solución:
+Divido la clase Order obteniendo lo siguiente:
+
+    class Order {
+        public function calculateTotalSum(){/*...*/}
+        public function getItems(){/*...*/}
+        public function getItemCount(){/*...*/}
+        public function addItem($item){/*...*/}
+        public function deleteItem($item){/*...*/}
+    }
+
+    class ViewOrder {
+        public function printOrder(){/*...*/}
+        public function showOrder(){/*...*/}
+    }
+
+    class OrderService {
+        public function load(){/*...*/}
+        public function save(){/*...*/}
+        public function update(){/*...*/}
+        public function delete(){/*...*/}
+    }
+
+Reto B:
+Problema:
+Rompe el principio O.
+Solución:
+Utilizamos abstracción para hacer extensible la clase Programmer.
+
+     class ProjectManagement {
+        public function process($member) {
+                $member->process();
+        }
+    }
+
+Reto C:
+Problema:
+Rompemos el principio L.
+Solución:
+Dogs are Animals but dogs can’t fly. Podemos armar una jerarquía de herencia con animales que sí pueden volar y animales que no pueden volar.
+
+   class Animal {
+    }
+   class AnimalFly extends Animal {
+        public function fly() {}
+    }
+   class AnimalNotFly extends Animal {
+        public function watchTV() {}
+    }
+
+    class Dog extends AnimalNotFly {
+        public function watchTV() {}
+    }
+    class Bird extends AnimalFly {
+        public function fly() {}
+    }
+
+Otra solución consiste en implementar interfaces, por ejemplo Flyable y Runnable.
+
+Reto D:
+Problema:
+Rompe el principio de segregación de interfaces (I) dado que la clase Consultant está obligada a implementar el método collate() el cual no necesita.
+Solución:
+Mover la definición del método collate de la interfaz UnderlingInterface a una nueva interfaz, por ejemplo, CollateInterface. Luego hacer que la clase Consultant implemente sólo UnderlingInterface y que la clase Underling implemente ambas interfaces. La clase Lumbergh queda igual.
+
+    interface UnderlingInterface {
+        public function program();
+        public function filetps();
+    }
+
+    interface CollateInterface {
+        public function collate();
+    }
+
+    class Underling implements UnderlingInterface, CollateInterface {
+        public function program() {
+            return 'Program initech systems to deposit fractions of pennies to private account';
+        }
+        public function filetps() {
+            return 'Place cover sheet on TPS report before going out';
+        }
+        public function collate() {
+            return 'Collect and combine texts, information, and figures in proper order.';
+        }
+    }
+
+    class Consultant implements UnderlingInterface {
+        public function program() {
+            return 'Outsource task to India';
+        }
+        public function filetps() {
+            return 'Place cover sheet on TPS report before going out';
+        }
+    }
+
+Reto E:
+Problema:
+Rompe el principio D.
+Solución:
+El módulo ContadorDeManzanas debería delegar la tarea de contar manzanas a la clase Manzano.
+
+    class Manzano {
+        private $manzanas = [];
+        public function getManzanas() {
+            return $this->manzanas;
+        }
+        public function cuentas() {
+            return count($this->manzano->getManzanas());
+        }
+    }
+
+    class ContadorDeManzanas {
+        private $manzano;
+        public function __contsruct(Manzano $manzano) {
+            $this->manzano = $manzano;
+        }
+        public function cuantas() {
+            return $this->manzano->cuentas();
+        }
+    }
